@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SitemapFast - Free Sitemap Generator Tool | XML, TXT, CSV",
+  title: "Free Sitemap Generator Tool | SitemapFast",
   description: "Generate sitemaps for any website instantly. Free online sitemap generator supporting XML, TXT, and CSV formats. No registration required. Fast, simple, and GDPR compliant.",
   keywords: ["sitemap generator", "sitemap.xml", "free sitemap tool", "website crawler", "SEO tools", "XML sitemap", "sitemap creator"],
   authors: [{ name: "WEBZI" }],

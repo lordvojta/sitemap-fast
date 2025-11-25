@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <p className={styles.text}>
-          Created by <span className={styles.webzi}>WEBZI</span>
+          Created by <span className={styles.webzi}><Link href="https://webzi.cz">WEBZI</Link></span>
         </p>
         <Link href="/privacy" className={styles.link}>
           Privacy & GDPR
