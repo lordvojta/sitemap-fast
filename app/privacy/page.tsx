@@ -101,7 +101,15 @@ export default function PrivacyPage() {
           <h2>Contact</h2>
           <p>
             If you have any questions about our privacy practices, please feel free to
-            reach out to us through our GitHub repository.
+            reach out to us through our{' '}
+            <a
+              href="https://github.com/lordvojta/sitemap-fast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              GitHub repository
+            </a>.
           </p>
         </section>
       </div>
