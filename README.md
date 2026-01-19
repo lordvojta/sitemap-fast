@@ -6,7 +6,7 @@ A minimalistic web tool to generate sitemaps for any website in multiple formats
 
 - **Simple Interface** - Clean, intuitive UI with a single URL input
 - **Multiple Export Formats** - Generate sitemaps in XML, TXT, or CSV format
-- **Automatic Crawling** - Discovers and indexes up to 100 pages automatically
+- **Automatic Crawling** - Discovers and indexes up to 1000 pages automatically
 - **Same-Domain Focus** - Only crawls pages within the same domain
 - **Responsive Design** - Works seamlessly on desktop and mobile devices
 - **Dark Mode Support** - Automatically adapts to your system preferences
@@ -81,7 +81,7 @@ npm run dev
 3. Wait for the crawler to scan the website
 4. The sitemap file will download automatically
 
-**Note:** The crawler respects the same-origin policy and only indexes pages from the same domain. It has a limit of 100 pages to ensure reasonable performance.
+**Note:** The crawler respects the same-origin policy and only indexes pages from the same domain. It has a limit of 1000 pages to ensure reasonable performance.
 
 ## Deployment
 
@@ -148,13 +148,13 @@ sitemapfast/
    - Fetches HTML content
    - Parses links using Cheerio
    - Adds same-domain URLs to the queue
-   - Continues until all pages are visited (max 100)
+   - Continues until all pages are visited (max 1000)
 4. **Format Generation:** URLs are formatted according to the selected export type
 5. **Download:** The generated sitemap is sent to the browser as a downloadable file
 
 ## Limitations
 
-- Maximum 100 pages per sitemap (configurable in code)
+- Maximum 1000 pages per sitemap (configurable in code)
 - 10-second timeout per page
 - Only HTML pages are indexed
 - JavaScript-rendered content is not executed

@@ -6,6 +6,8 @@ import styles from './page.module.css';
 interface SitemapData {
   urls: string[];
   count: number;
+  limitReached: boolean;
+  maxPages: number;
   formats: {
     xml: string;
     txt: string;
@@ -117,6 +119,11 @@ export default function Home() {
             <div className={styles.previewInfo}>
               <h2>Sitemap Generated</h2>
               <p>{sitemapData.count} URLs found</p>
+              {sitemapData.limitReached && (
+                <p className={styles.limitWarning}>
+                  Maximum limit of {sitemapData.maxPages} pages reached. This site may have more pages.
+                </p>
+              )}
             </div>
             <div className={styles.downloadButtons}>
               <button

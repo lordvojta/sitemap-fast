@@ -172,6 +172,17 @@
   margin: 0;
 }
 
+.limitWarning {
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 8px 0 0 0 !important;
+  padding: 8px 12px;
+  background-color: #fffbeb;
+  border-radius: 6px;
+  border-left: 3px solid #f59e0b;
+}
+
 .downloadButtons {
   display: flex;
   gap: 12px;
@@ -369,5 +380,11 @@
   .codeBlock {
     background-color: #1a1a1a;
     border-color: var(--border-color);
+  }
+
+  .limitWarning {
+    color: #fbbf24;
+    background-color: #1a1510;
+    border-left-color: #fbbf24;
   }
 }

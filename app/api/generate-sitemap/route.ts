@@ -4,9 +4,11 @@ import * as cheerio from 'cheerio';
 interface CrawlResult {
   urls: Set<string>;
   errors: string[];
+  limitReached: boolean;
+  maxPages: number;
 }
 
-async function crawlWebsite(startUrl: string, maxPages = 100): Promise<CrawlResult> {
+async function crawlWebsite(startUrl: string, maxPages = 1000): Promise<CrawlResult> {
   const visitedUrls = new Set<string>();
   const urlsToVisit = [startUrl];
   const baseUrl = new URL(startUrl);
@@ -61,7 +63,8 @@ async function crawlWebsite(startUrl: string, maxPages = 100): Promise<CrawlResu
     }
   }
 
-  return { urls: visitedUrls, errors };
+  const limitReached = visitedUrls.size >= maxPages;
+  return { urls: visitedUrls, errors, limitReached, maxPages };
 }
 
 function generateXML(urls: string[]): string {
@@ -119,7 +122,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { urls } = await crawlWebsite(normalizedUrl);
+    const { urls, limitReached, maxPages } = await crawlWebsite(normalizedUrl);
     const urlArray = Array.from(urls).sort();
 
     // If download is requested with a specific format
@@ -160,6 +163,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       urls: urlArray,
       count: urlArray.length,
+      limitReached,
+      maxPages,
       formats: {
         xml: generateXML(urlArray),
         txt: generateTXT(urlArray),
