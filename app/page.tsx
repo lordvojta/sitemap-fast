@@ -53,32 +53,19 @@ export default function Home() {
     }
   };
 
-  const handleDownload = async (format: 'xml' | 'txt' | 'csv') => {
-    if (!url) return;
+  const handleDownload = (format: 'xml' | 'txt' | 'csv') => {
+    if (!sitemapData) return;
 
-    try {
-      const response = await fetch('/api/generate-sitemap', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url, download: format }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to download sitemap');
-      }
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = `sitemap.${format}`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(downloadUrl);
-      document.body.removeChild(a);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Download failed');
-    }
+    const mimeTypes = { xml: 'application/xml', txt: 'text/plain', csv: 'text/csv' };
+    const blob = new Blob([sitemapData.formats[format]], { type: mimeTypes[format] });
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = `sitemap.${format}`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(downloadUrl);
+    document.body.removeChild(a);
   };
 
   return (
